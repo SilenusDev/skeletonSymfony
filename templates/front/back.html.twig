@@ -23,13 +23,13 @@
                     <h1>Back Admin</h1>
                     <hr>
                     <h3>Modèles</h3>
-                    <a href="{{ path('app_back_model_index') }}">Voir</a>
-                    <a href="{{ path('app_back_model_new') }}">Créer</a>
+                    <a class="btn btn-outline-success"  href="{{ path('app_back_model_index') }}">Voir</a>
+                    <a class="btn btn-outline-primary"  href="{{ path('app_back_model_new') }}">Créer</a>
                     
                     <hr>
                     <h3>Marques</h3>
-                    <a href="{{ path('app_back_brand_index') }}">Voir</a>
-                    <a href="{{ path('app_back_brand_new') }}">Créer</a>
+                    <a class="btn btn-outline-success"  href="{{ path('app_back_brand_index') }}">Voir</a>
+                    <a class="btn btn-outline-primary" href="{{ path('app_back_brand_new') }}">Créer</a>
                 </div>
                 <div class="col-10">
                     {% block body %}{% endblock %}
