@@ -1,0 +1,14 @@
+{% extends 'front/back.html.twig' %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block body %}
+    <div class="boxSM row">
+    <h1>Créer un modèle</h1>
+
+    {{ include('back_model/_form.html.twig') }}
+    <a href="{{ path('app_back_model_index') }}">Retour à la liste</a>
+    </div>
+
+    
+{% endblock %}

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Listing;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -14,7 +15,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Listing[]    findAll()
  * @method Listing[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ListingRepository extends ServiceEntityRepository
+class ListingRepository extends AbstractAutoRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -37,6 +38,14 @@ class ListingRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function getQbAll(): QueryBuilder
+    {
+        $qb = parent::getQbAll();
+        return $qb->select('listing')
+        ->orderBy('listing.title', 'ASC');    
+        
     }
 
 //    /**

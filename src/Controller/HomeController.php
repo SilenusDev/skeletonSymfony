@@ -6,15 +6,26 @@ use App\Repository\ListingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends AbstractController
 {
-    #[Route('/home', name: 'app_home')]
-    public function index(ListingRepository $listingRepository): Response
+    #[Route('/', name: 'app_home')]
+    public function index(ListingRepository $listingRepository, Request $request, 
+    PaginatorInterface $paginator,): Response
     {
+
+        $qb = $listingRepository->getQbAll();
+        // Paginator
+        $listings = $paginator->paginate(
+            $qb,
+            $request->query->getInt('page',1),12
+        );
         return $this->render('front/home/index.html.twig', [
             
-            'listings' => $listingRepository->findAll([], ['createdAt' => 'DESC']),
+            'listings' => $listings,
+        
         ]);
     }
 

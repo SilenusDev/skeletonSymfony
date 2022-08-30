@@ -1,11 +1,14 @@
-<!DOCTYPE html>
+{% extends 'front/back.html.twig' %}
 
-<title>New Brand</title>
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
 
 {% block body %}
-    <h1>Create new Brand</h1>
+    <div class="boxSM row">
+    <h1>Ajouter une nouvelle marque</h1>
 
     {{ include('back_brand/_form.html.twig') }}
 
-    <a href="{{ path('app_back_brand_index') }}">back to list</a>
+    <a href="{{ path('app_back_brand_index') }}">retour à la liste</a>
+    <div>
 {% endblock %}

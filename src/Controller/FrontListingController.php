@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Listing;
 use App\Form\Listing1Type;
 use App\Repository\ListingRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,10 +15,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class FrontListingController extends AbstractController
 {
     #[Route('/', name: 'app_front_listing_index', methods: ['GET'])]
-    public function index(ListingRepository $listingRepository): Response
-    {
+    public function index(ListingRepository $listingRepository, Request $request, 
+    PaginatorInterface $paginator, ): Response
+    {   
+
+        $qb = $listingRepository->getQbAll();
+        // Paginator
+        $listings = $paginator->paginate(
+            $qb,
+            $request->query->getInt('page',1),12
+        );
         return $this->render('front_listing/index.html.twig', [
-            'listings' => $listingRepository->findAll(),
+            'listings' => $listings,
         ]);
     }
 

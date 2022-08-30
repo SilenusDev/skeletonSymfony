@@ -1,11 +1,12 @@
-<!DOCTYPE html>
+{% extends 'front/back.html.twig' %}
 
-<title>Brand index</title>
+
 
 {% block body %}
-    <h1>Brand index</h1>
+ <div class="boxSM row">
+    <h1>Liste des marques</h1>
 
-    <table class="table">
+    <table class="table table-success table-striped table-hover">
         <thead>
             <tr>
                 <th>Id</th>
@@ -30,6 +31,7 @@
         {% endfor %}
         </tbody>
     </table>
+</div>    
 
     <a href="{{ path('app_back_brand_new') }}">Create new</a>
 {% endblock %}

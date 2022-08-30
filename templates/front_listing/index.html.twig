@@ -3,7 +3,7 @@
 <title>Listing index</title>
 
 {% block body %}
-    <h1>Listing index</h1>
+<div class="boxXL row">
 
     <table class="table">
         <thead>
@@ -40,6 +40,6 @@
         {% endfor %}
         </tbody>
     </table>
-
+</div>
     <a href="{{ path('app_front_listing_new') }}">Create new</a>
 {% endblock %}
